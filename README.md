@@ -6,6 +6,6 @@ add _.env_ file with the following variables:
 - JWT_SECRET
 
 then run the following commands:
-- npx prisma generate (generate prisma client)
-- yarn install (install dependencies)
-- yarn dev (start server)
+- `npx prisma generate` (generate prisma client)
+- `yarn install` (install dependencies)
+- `yarn dev` (start server)
