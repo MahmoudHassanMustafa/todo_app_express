@@ -57,7 +57,7 @@ class UserService {
       });
 
       if (!user) {
-        throw new UserNotFoundError("User not found");
+        return null;
       }
 
       return user;

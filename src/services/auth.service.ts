@@ -11,7 +11,9 @@ class AuthService {
   async register(name: string, email: string, password: string): Promise<User> {
     try {
       // Check if the user already exists
-      const existingUser = await userService.getUserByFilter({ email });
+      const existingUser: User | null = await userService.getUserByFilter({
+        email,
+      });
 
       if (existingUser) {
         throw new DuplicateUserError("User with this email already exists");

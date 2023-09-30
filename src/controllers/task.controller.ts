@@ -51,7 +51,7 @@ class TaskController {
       }
 
       const tasks: Task[] = await taskService.getUserTasks(userId);
-      res.json(tasks);
+      res.status(200).json(tasks);
     } catch (error) {
       console.error("Error in getUserTasks:", error);
       next(error);
@@ -71,7 +71,7 @@ class TaskController {
         taskId,
         requestBody
       );
-      res.json(updatedTask);
+      res.status(200).json(updatedTask);
     } catch (error) {
       console.error("Error in updateTask:", error);
       next(error);
@@ -86,7 +86,7 @@ class TaskController {
     try {
       const taskId = req.params.taskId;
       await taskService.deleteTask(taskId);
-      res.json({ message: "Task deleted successfully" });
+      res.status(200).json({ message: "Task deleted successfully" });
     } catch (error) {
       console.error("Error in deleteTask:", error);
       next(error);

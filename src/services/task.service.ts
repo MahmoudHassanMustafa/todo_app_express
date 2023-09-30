@@ -64,6 +64,7 @@ class TaskService {
 
   async updateTask(taskId: string, updateData: UpdateTaskDto): Promise<Task> {
     const { title, description, isComplete, dueDate } = updateData;
+
     const taskData: Prisma.TaskUpdateInput = {
       title,
       description,

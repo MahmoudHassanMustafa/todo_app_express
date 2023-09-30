@@ -3,6 +3,7 @@ import { authService } from "../services/auth.service";
 import { RegisterUserDto } from "../dto/register-user.dto";
 import { LoginUserDto } from "../dto/login-user.dto";
 import { User } from "@prisma/client";
+import { InvalidCredentialsError } from "../errors/invalid-credentials.error";
 
 class AuthController {
   async register(
@@ -16,7 +17,7 @@ class AuthController {
 
       const user: User = await authService.register(name, email, password);
 
-      res.json(user);
+      res.status(201).json(user);
     } catch (error: any) {
       console.error("Error in register:", error);
       next(error);
@@ -32,9 +33,9 @@ class AuthController {
         await authService.login(email, password);
 
       if (result) {
-        res.json(result);
+        res.status(200).json(result);
       } else {
-        res.status(401).json({ error: "Authentication failed" });
+        throw new InvalidCredentialsError("Invalid credentials");
       }
     } catch (error) {
       console.error("Error in login:", error);
