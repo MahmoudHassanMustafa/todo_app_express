@@ -43,7 +43,6 @@ taskRouter.patch(
 // Delete a task by ID (protected with JWT)
 taskRouter.delete(
   "/:taskId",
-  [authenticate, validationMiddleware(TaskIdParamDto)],
   authenticate,
   taskController.deleteTask
 );
