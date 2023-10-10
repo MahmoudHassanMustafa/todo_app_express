@@ -16,7 +16,7 @@ const authenticate = passport.authenticate("jwt", { session: false });
 // Create a new task (protected with JWT)
 taskRouter.post(
   "/",
-  [validationMiddleware(CreateTaskDto), authenticate],
+  [authenticate, validationMiddleware(CreateTaskDto)],
   (req: Request, res: Response, next: NextFunction): void => {
     const user: User | undefined = req.user as UserAttachedRequest["user"]; // Cast user property
     taskController.createTask(req, res, next, user);
@@ -36,14 +36,14 @@ taskRouter.get(
 // Update a task by ID (protected with JWT)
 taskRouter.patch(
   "/:taskId",
-  [validationMiddleware(UpdateTaskDto), authenticate],
+  [authenticate, validationMiddleware(UpdateTaskDto)],
   taskController.updateTask
 );
 
 // Delete a task by ID (protected with JWT)
 taskRouter.delete(
   "/:taskId",
-  // [validationMiddleware(TaskIdParamDto), authenticate],
+  [authenticate, validationMiddleware(TaskIdParamDto)],
   authenticate,
   taskController.deleteTask
 );
