@@ -6,12 +6,6 @@ import { Task, User } from "@prisma/client";
 import { UnauthorizedUserError } from "../errors/unauthorized-user.error";
 
 class TaskController {
-  // private taskService: TaskService;
-
-  // constructor() {
-  //   this.taskService = new TaskService();
-  // }
-
   async createTask(
     req: Request,
     res: Response,
